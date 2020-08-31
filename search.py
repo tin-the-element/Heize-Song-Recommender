@@ -2,7 +2,9 @@ import spotipy
 import json
 from spotipy.oauth2 import SpotifyClientCredentials
 
-
+#File for everything related to searching the spotify API
+client_id = 'a4e027cea0064a4b91a1ba5327a24ba7'
+client_secret = 'aba1cc615d404c9f8c2dbf89590db035'
 
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
 
@@ -28,11 +30,9 @@ def get_songs(artist_id):
     song_names = {}
     results = spotify.audio_features(heize_dict.keys())
     for track in results:
-        '''
-        pretty_print = json.dumps(track, indent=2)
-        print("\n" + heize_dict[track["uri"]] + "\n")
-        print(pretty_print)
-        '''
         song_names[heize_dict[track["uri"]]] = track
 
     return song_names
+
+def get_song(song_id):
+    return spotify.audio_features(song_id)
