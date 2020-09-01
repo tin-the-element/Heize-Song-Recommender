@@ -2,6 +2,7 @@ import spotipy
 import json
 from spotipy.oauth2 import SpotifyClientCredentials
 
+
 #File for everything related to searching the spotify API
 
 
@@ -33,5 +34,6 @@ def get_songs(artist_id):
 
     return song_names
 
-def get_song(song_id):
+
+def get_song_features(song_id):
     return spotify.audio_features(song_id)
