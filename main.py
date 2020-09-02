@@ -2,6 +2,7 @@ import spotify
 import song_formula
 import prints
 import track_search
+from collections import OrderedDict
 
 print("\nHeize Song Recommender\n----------\n")
 #The uri of heize (can hypothetically put any artist in here)
@@ -15,7 +16,7 @@ artists_songs = {name: features for name, features in sorted(artists_songs.items
 artists_songs = track_search.delete_duplicate(artists_songs)
 
 #Use the dictionary of audio features to create scores
-song_scores = {}
+song_scores = OrderedDict()
 
 for name, track in artists_songs.items():
     song_scores[name] = song_formula.define_formula(track)
@@ -30,7 +31,7 @@ sorted_scores = {name: score for name, score in sorted(song_scores.items(), key=
 #Enter song_id
 user_song = spotify.get_song_features(input("Enter a song id: "))
 
-related_songs = track_search.find_similar_tracks(artists_songs, user_song)
+related_songs = track_search.find_similar_tracks(song_scores, user_song)
 
 print(related_songs)
 

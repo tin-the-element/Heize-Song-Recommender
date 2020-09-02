@@ -18,7 +18,7 @@ def define_formula(track):
     #danceability + energy + acousticness + tempo + valence + 
 
     if instrumentalness > .1:
-        song_score += 1000
+        song_score += 2000
 
     #Tempo
     song_score += tempo / 10
