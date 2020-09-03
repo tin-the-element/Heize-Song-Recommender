@@ -23,20 +23,16 @@ def find_similar_tracks(tracks, song):
     Use the outside index and tracks_length as boundaries for finding the max five closest songs to the song chosen
     '''
     user_value = song_formula.define_formula(song[0])
-    outside_index = 0
     tracks_length = len(tracks)
-    track_values = list(tracks.values())
-    track_names = list(tracks.keys())
-    print(track_values)
-    for key, values in (tracks.items()):
-        outside_index += 1
-        current_value = values
+    track_values = [features for name, features in sorted(tracks.items(), key=lambda item: item[1])]
+    track_names = [name for name, features in sorted(tracks.items(), key=lambda item: item[1])]
+    for i in range(tracks_length):
+        current_value = track_values[i]
         if user_value < current_value:
             inside_index = 0
-            other = outside_index
+            other = i
             current_song = None
             while inside_index != 5 and other != 0:
-                print(other)
                 current_value = track_values[other]
                 current_name = track_names[other]
                 other -= 1
@@ -44,9 +40,8 @@ def find_similar_tracks(tracks, song):
                 closest_songs[current_name] = abs(current_value - user_value)
             
             inside_index = 0
-            other = outside_index
+            other = i + 1
             while inside_index!= 5 and other != tracks_length:
-                print(other)
                 current_value = track_values[other]
                 current_name = track_names[other]
                 other += 1
@@ -55,12 +50,11 @@ def find_similar_tracks(tracks, song):
             break
     
     similar_songs = [key for key, value in sorted(closest_songs.items(), key=lambda item: item[1])]
-    print(similar_songs)
+    
 
-            
-
+    closest_songs = [similar_songs[i] for i in range(5)]
     #Find a way to index through a dictionary
-    return 
+    return closest_songs
 
     '''
     So I could just do a dict comprehension anytime I do dictionary.values/dictionary.keys/dictionary.items

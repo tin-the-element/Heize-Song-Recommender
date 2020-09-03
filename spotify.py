@@ -5,8 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 #File for everything related to searching the spotify API
 
-client_id = 'a4e027cea0064a4b91a1ba5327a24ba7'
-client_secret = 'aba1cc615d404c9f8c2dbf89590db035'
+
 
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
 
@@ -39,3 +38,6 @@ def get_songs(artist_id):
 
 def get_song_features(song_id):
     return spotify.audio_features(song_id)
+
+def get_track(song_id):
+    return spotify.track(song_id)

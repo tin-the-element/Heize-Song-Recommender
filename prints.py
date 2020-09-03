@@ -1,4 +1,5 @@
 import json
+import spotify
 
 def print_songs(tracks, option):
     for name, track in tracks.items():
@@ -33,4 +34,12 @@ def options(tracks, scores):
         print_scores(scores)
     elif option == 4:
         write_to_file(tracks)
+
+def print_final_songs(songs, tracks):
+    for i in range(len(songs)):
+        song_dict = tracks[songs[i]]
+        uri = song_dict["uri"]
+        analysis = spotify.get_track(uri)
+
+        print(str(i + 1) + ". " + songs[i] + " " + analysis["external_urls"]["spotify"])
     

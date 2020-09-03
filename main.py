@@ -2,12 +2,13 @@ import spotify
 import song_formula
 import prints
 import track_search
+import interface
 from collections import OrderedDict
 
 print("\nHeize Song Recommender\n----------\n")
 #The uri of heize (can hypothetically put any artist in here)
 heize_uri = 'spotify:artist:5dCvSnVduaFleCnyy98JMo'
-
+#heize_uri = 'spotify:artist:3qNVuliS40BLgXGxhdBdqu'
 #Get the artists song from the uri
 artists_songs = spotify.get_songs(heize_uri)
 
@@ -29,11 +30,9 @@ sorted_scores = {name: score for name, score in sorted(song_scores.items(), key=
 #prints.options(artists_songs, sorted_scores)
 
 #Enter song_id
-user_song = spotify.get_song_features(input("Enter a song id: "))
 
-related_songs = track_search.find_similar_tracks(song_scores, user_song)
+interface.interface(song_scores, artists_songs)
 
-print(related_songs)
 
 #TO-DO
 #  - Delete Duplicate Songs
