@@ -20,7 +20,7 @@ def interface(song_scores, artists_songs):
     label_title.grid(row = 0, column = 0)
     enter = tk.Entry(program, width = 100, bd= 5)
     enter.grid(row = 1, column = 0)
-    button = tk.Button(program, text="enter", height = 5, width = 10, command = onclick(song_scores, artists_songs, enter))
+    button = tk.Button(program, text="enter", height = 5, width = 10, command = onclick)
     button.grid(row = 1, column = 1)
     
     program.mainloop()
