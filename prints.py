@@ -36,10 +36,13 @@ def options(tracks, scores):
         write_to_file(tracks)
 
 def print_final_songs(songs, tracks):
+    list_prints = []
     for i in range(len(songs)):
         song_dict = tracks[songs[i]]
         uri = song_dict["uri"]
         analysis = spotify.get_track(uri)
 
-        print(str(i + 1) + ". " + songs[i] + " " + analysis["external_urls"]["spotify"])
+        list_prints.append(str(i + 1) + ". " + songs[i])
+        list_prints.append(analysis["external_urls"]["spotify"])
+    return list_prints
     
